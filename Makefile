@@ -73,6 +73,8 @@ web:
 	docker compose exec web bash
 app:
 	docker compose exec app bash
+route:
+	docker compose exec app php artisan route:list
 migrate:
 	docker compose exec app php artisan migrate
 fresh:
@@ -108,6 +110,7 @@ sql:
 redis:
 	docker compose exec redis redis-cli
 ide-helper:
+	docker compose exec app composer require --dev barryvdh/laravel-ide-helper
 	docker compose exec app php artisan clear-compiled
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
@@ -120,6 +123,7 @@ react:
 	docker compose exec app composer require laravel/breeze --dev
 	docker compose exec app php artisan breeze:install
 	docker compose exec app php artisan breeze:install react
+	docker compose exec app npm install @inertiajs/inertia @inertiajs/inertia-react
 	docker compose exec app npm install
 
 web-update:
