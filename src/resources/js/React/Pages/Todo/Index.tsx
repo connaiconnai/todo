@@ -1,17 +1,25 @@
 import { Head, useForm } from "@inertiajs/react";
+import React, { FormEventHandler } from "react";
 
-export default function Todo({ todos }) {
+type Todo = {
+  title: string;
+  content: string;
+  created_at: Date;
+  updated_at: Date;
+};
+
+export default function Todo({ todos }: { todos: Array<Todo> }) {
   const { data, setData, post, errors } = useForm({
     title: "",
     content: "",
   });
 
-  const onSubmit = (e) => {
+  const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
     post("/todo");
   };
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const key = e.target.id;
     const value = e.target.value;
     setData((prev) => ({ ...prev, [key]: value }));
@@ -48,7 +56,7 @@ export default function Todo({ todos }) {
         </div>
       </form>
       <div className="mt-12">
-        {todos.map((todo) => (
+        {todos.map((todo: Todo) => (
           <div className="flex gap-2" key={Math.random().toString(36)}>
             <div className="w-fit">{todo.title}</div>
             <div className="w-fit">{todo.content}</div>
