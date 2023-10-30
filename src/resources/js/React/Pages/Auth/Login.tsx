@@ -25,7 +25,6 @@ export default function Login({
     remember: false,
   });
 
-
   useEffect(() => {
     return () => {
       reset("password");
@@ -36,7 +35,6 @@ export default function Login({
     e.preventDefault();
     post(route("login"));
   };
-
 
   return (
     <GuestLayout>

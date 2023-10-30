@@ -1,35 +1,30 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true
+  env: {
+    browser: true,
+    es2021: true
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
-  "overrides": [
+  overrides: [
     {
-      "env": {
-        "node": true
-      },
-      "parserOptions": {
-        "sourceType": "script"
-      },
-      files: ['*.eslintrc.jsc'],
-    }
+      files: ["**/*.{js,jsx,ts,tsx"],
+    },
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "ecmaFeatures": {
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    ecmaFeatures: {
       "jsx": true,
       "tsx": true,
     }
   },
-  "plugins": [
+  plugins: [
     "@typescript-eslint",
     "react",
     "import",
@@ -52,6 +47,7 @@ module.exports = {
     "react/prop-types": "off",
   },
   settings: {
+    react: { version: "18.2" },
     'import/resolver': { //importするファイルをjsだけではなく、tsを含むファイルを許可する
       node: {
         paths: ['src'],
@@ -60,3 +56,4 @@ module.exports = {
     },
   },
 }
+
