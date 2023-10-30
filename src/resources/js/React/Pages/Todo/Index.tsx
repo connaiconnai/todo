@@ -48,7 +48,7 @@ export default function Todo({ todos }) {
         </div>
       </form>
       <div className="mt-12">
-        {todos.data.map((todo) => (
+        {todos.map((todo) => (
           <div className="flex gap-2" key={Math.random().toString(36)}>
             <div className="w-fit">{todo.title}</div>
             <div className="w-fit">{todo.content}</div>

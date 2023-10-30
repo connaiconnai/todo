@@ -162,3 +162,6 @@ npm-hot:
 	docker compose exec app npm run hot
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
+eslint-install:
+	docker compose exec app npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
+	docker compose exec app touch eslintrc.cjs

@@ -14,7 +14,7 @@
   <!-- Scripts -->
   @routes
   @viteReactRefresh
-  @vite(['resources/js/app.jsx'])
+  @vite(['resources/js/React/app.tsx'])
   @inertiaHead
 </head>
 

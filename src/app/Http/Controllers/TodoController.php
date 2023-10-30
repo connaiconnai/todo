@@ -18,10 +18,10 @@ class TodoController extends Controller
    */
   public function index()
   {
-    return Inertia::render('Todo', [
+    return Inertia::render('Todo/Index', [
       'laravelVersion' => Application::VERSION,
       'phpVersion' => PHP_VERSION,
-      'todos' => TodoResource::collection(Todo::all())
+      'todos' => TodoResource::collection(Todo::all())->collection
     ]);
   }
 
@@ -54,7 +54,9 @@ class TodoController extends Controller
    */
   public function show(Todo $todo)
   {
-    //
+    return Inertia::render('Todo/Show', [
+      'todo' => new TodoResource($todo)
+    ]);
   }
 
   /**
