@@ -90,6 +90,13 @@ tinker:
 	docker compose exec app php artisan tinker
 test:
 	docker compose exec app php artisan test
+dusk-install:
+	docker compose exec app composer require --dev laravel/dusk
+	docker compose exec app composer require --dev doctrine/dbal
+	docker compose exec app php artisan dusk:install
+	docker compose exec app php artisan dusk:chrome-driver
+dusk:
+	docker compose exec app php artisan dusk
 optimize:
 	docker compose exec app php artisan optimize
 optimize-clear:

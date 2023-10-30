@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateTodoRequest;
 use App\Models\Todo;
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
+use App\Http\Resources\TodoResource;
+use App\UseCase\Todo\StoreAction;
+use Exception;
 
 class TodoController extends Controller
 {
@@ -18,7 +21,7 @@ class TodoController extends Controller
     return Inertia::render('Todo', [
       'laravelVersion' => Application::VERSION,
       'phpVersion' => PHP_VERSION,
-      'todos' => Todo::all(),
+      'todos' => TodoResource::collection(Todo::all())
     ]);
   }
 
@@ -33,10 +36,17 @@ class TodoController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(StoreTodoRequest $request)
+  public function store(StoreTodoRequest $request, StoreAction $action)
   {
-    Todo::create($request->validated());
-    return to_route('todo.index');
+    $todo = $request->makePost();
+    try {
+      $action($todo);
+      return to_route('todo.index');
+    } catch (Exception $e) {
+      return [
+        'message' => $e->getMessage()
+      ];
+    }
   }
 
   /**

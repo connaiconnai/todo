@@ -31,6 +31,8 @@ services:
       - DB_DATABASE=${DB_DATABASE:-laravel}
       - DB_USERNAME=${DB_USERNAME:-phper}
       - DB_PASSWORD=${DB_PASSWORD:-secret}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   web:
     build:
@@ -72,13 +74,3 @@ services:
         published: ${MAILHOG_PUBLISHED_PORT:-8025}
         protocol: tcp
         mode: host
-  pma:
-    image: phpmyadmin/phpmyadmin:5.0.2
-    environment:
-      - PMA_HOST=db
-      - PMA_USER=phper
-      - PMA_PASSWORD=secret
-    ports:
-      - 8080:80
-    volumes:
-      - pma-session-store:/sessions

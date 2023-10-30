@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Todo;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTodoRequest extends FormRequest
@@ -25,5 +26,10 @@ class StoreTodoRequest extends FormRequest
       'title' => ['required'],
       'content' => ['required'],
     ];
+  }
+
+  public function makePost(): Todo
+  {
+    return new Todo($this->validated());
   }
 }
